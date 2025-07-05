@@ -1,4 +1,4 @@
-add_library(Graphics Window.cpp)
+add_library(Graphics Window.cpp Textbox.cpp)
 
 # add libraries include directories
 target_include_directories(

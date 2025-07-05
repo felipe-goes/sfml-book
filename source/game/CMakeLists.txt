@@ -1,4 +1,4 @@
-add_library(Game Game.cpp)
+add_library(Game Game.cpp Snake.cpp World.cpp)
 
 # add libraries include directories
 target_include_directories(Game PRIVATE "${CMAKE_SOURCE_DIR}/include"

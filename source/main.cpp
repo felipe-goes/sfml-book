@@ -1,6 +1,8 @@
 #include "game/Game.hpp"
 
 int main() {
+  srand(time(nullptr));
+
   // Program entry point
   Game game;  // Creating our game object
   sf::Time timeAccumulator = sf::seconds(0);
@@ -12,13 +14,12 @@ int main() {
     // game.HandleInput();
 
     sf::Time deltaTime = game.GetElapsed();
-    timeAccumulator += deltaTime;
-
     game.Update(deltaTime.asSeconds());
 
+    timeAccumulator += deltaTime;
     if (timeAccumulator >= frameTime) {
       game.Render();
-      timeAccumulator = sf::seconds(0);
+      timeAccumulator -= frameTime;
     }
   }
 }
