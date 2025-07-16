@@ -21,11 +21,11 @@ class Game {
 
  private:
   void MoveMushroom(float f_delta);
-  void MoveSprite(EventDetails* l_details);
+  void MoveSprite();
+  Window m_window;
   World m_world;
   Snake m_snake;
 
-  Window m_window;
   sf::Texture m_mushroomTexture;
   sf::Texture m_texture;
   sf::Sprite m_mushroom;

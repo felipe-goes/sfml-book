@@ -41,7 +41,7 @@ void Textbox::Clear() {
 }
 
 void Textbox::Render(sf::RenderWindow& l_wind) {
-  std::string l_content;
+  std::string l_content;  // NOLINT
 
   for (auto& itr : m_messages) {
     l_content.append(itr + "\n");

@@ -29,8 +29,7 @@ class Window {
 
   bool IsFocused();
   EventManager* GetEventManager();
-  void ToggleFullscreen(EventDetails* l_details);
-  void Close(EventDetails* l_details);
+  void Close();
 
  private:
   void Setup(const std::string& l_title, const sf::Vector2u& l_size);

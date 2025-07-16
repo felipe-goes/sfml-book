@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "SFML/Graphics/RectangleShape.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "SFML/System/Vector2.hpp"

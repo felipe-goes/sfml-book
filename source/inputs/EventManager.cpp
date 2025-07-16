@@ -119,7 +119,7 @@ void EventManager::Update() {
       if (bind->m_events.size() == static_cast<uint32_t>(bind->c)) {
         auto callItr = m_callbacks.find(bind->m_name);
         if (callItr != m_callbacks.end()) {
-          callItr->second(&bind->m_details);
+          callItr->second();
         }
       }
     }

@@ -28,15 +28,6 @@ void Window::Setup(const std::string& l_title, const sf::Vector2u& l_size) {
   Create();
 }
 
-void Window::Create() {
-  auto style = (m_isFullscreen ? sf::Style::Fullscreen : sf::Style::Default);
-  m_window.create({m_windowSize.x, m_windowSize.y, 32}, m_windowTitle, style);
-}
-
-void Window::Destroy() {
-  m_window.close();
-}
-
 void Window::Update() {
   sf::Event event;
   while (m_window.pollEvent(event)) {
@@ -58,10 +49,13 @@ void Window::ToggleFullscreen() {
   Create();
 }
 
-void Window::ToggleFullscreen(EventDetails* l_details) {
-  m_isFullscreen = !m_isFullscreen;
-  Destroy();
-  Create();
+void Window::Create() {
+  auto style = (m_isFullscreen ? sf::Style::Fullscreen : sf::Style::Default);
+  m_window.create({m_windowSize.x, m_windowSize.y, 32}, m_windowTitle, style);
+}
+
+void Window::Destroy() {
+  m_window.close();
 }
 
 void Window::BeginDraw() {
@@ -92,7 +86,7 @@ void Window::Draw(sf::Drawable& l_drawable) {
   m_window.draw(l_drawable);
 }
 
-void Window::Close(EventDetails* l_details) {
+void Window::Close() {
   m_isDone = true;
 }
 

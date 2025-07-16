@@ -27,9 +27,11 @@ Game::Game()
 Game::~Game() {
 }
 
-void Game::Update(float f_delta) {
+void Game::HandleInput() {
   m_window.Update();  // Update window events
+}
 
+void Game::Update(float f_delta) {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) &&
       m_snake.GetPhysicalDirection() != Direction::Down) {
     m_snake.SetDirection(Direction::Up);
@@ -58,7 +60,7 @@ void Game::Update(float f_delta) {
   MoveMushroom(f_delta);
 }
 
-void Game::MoveSprite(EventDetails* l_details) {
+void Game::MoveSprite() {
   sf::Vector2i mousepos =
       m_window.GetEventManager()->GetMousePos(m_window.GetRenderWindow());
   m_sprite.setPosition(mousepos.x, mousepos.y);
@@ -91,15 +93,18 @@ void Game::MoveMushroom(float f_delta) {
 }
 
 void Game::Render() {
-  m_window.BeginDraw();  // Clear
+  // Clear
+  m_window.BeginDraw();
 
+  // Draw
   m_window.Draw(m_sprite);
   m_window.Draw(m_mushroom);
   // m_world.Render(*m_window.GetRenderWindow());
   // m_snake.Render(*m_window.GetRenderWindow());
   // m_textbox.Render(*m_window.GetRenderWindow());
 
-  m_window.EndDraw();  // Display
+  // Display
+  m_window.EndDraw();
 }
 
 sf::Time Game::GetElapsed() {

@@ -7,7 +7,7 @@
 #include "SFML/Graphics/RenderWindow.hpp"
 
 using Callbacks =
-    std::unordered_map<std::string, std::function<void(EventDetails*)>>;
+    std::unordered_map<std::string, std::function<void()>>;
 
 class EventManager {
  public:
@@ -21,9 +21,9 @@ class EventManager {
 
   // Needs to be defined in the header!
   template <class T>
-  bool AddCallback(const std::string& l_name, void (T::*l_func)(EventDetails*),
+  bool AddCallback(const std::string& l_name, void (T::*l_func)(),
                    T* l_instance) {
-    auto temp = std::bind(l_func, l_instance, std::placeholders::_1);
+    auto temp = std::bind(l_func, l_instance);
     return m_callbacks.emplace(l_name, temp).second;
   }
 

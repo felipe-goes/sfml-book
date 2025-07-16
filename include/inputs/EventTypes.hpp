@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "EventInfo.hpp"
+#include "./EventInfo.hpp"
 #include "SFML/Window/Event.hpp"
 
 enum class EventType {
