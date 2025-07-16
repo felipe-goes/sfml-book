@@ -1,3 +1,4 @@
+add_subdirectory(inputs)
 add_subdirectory(graphics)
 add_subdirectory(game)
 
@@ -10,11 +11,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX
 target_link_libraries(
   ${PROJECT_NAME}
   PRIVATE libs project_flags
-  PUBLIC Graphics Game)
-
-# add libraries include directories
-# target_include_directories(${PROJECT_NAME}
-#                            PRIVATE "${CMAKE_SOURCE_DIR}/libs/sfml/include")
+  PUBLIC Graphics Game Inputs)
 
 # add the install targets
 file(GLOB_RECURSE headers CONFIGURE_DEPENDS

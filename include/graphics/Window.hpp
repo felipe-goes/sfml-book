@@ -5,6 +5,7 @@
 #include "SFML/Graphics/Drawable.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "SFML/System/Vector2.hpp"
+#include "inputs/EventManager.hpp"
 
 class Window {
  public:
@@ -26,6 +27,11 @@ class Window {
 
   void Draw(sf::Drawable& l_drawable);
 
+  bool IsFocused();
+  EventManager* GetEventManager();
+  void ToggleFullscreen(EventDetails* l_details);
+  void Close(EventDetails* l_details);
+
  private:
   void Setup(const std::string& l_title, const sf::Vector2u& l_size);
   void Destroy();
@@ -36,4 +42,7 @@ class Window {
   std::string m_windowTitle;
   bool m_isDone;
   bool m_isFullscreen;
+
+  EventManager m_eventManager;
+  bool m_isFocused;
 };

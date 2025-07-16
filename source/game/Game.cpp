@@ -1,6 +1,6 @@
 #include "game/Game.hpp"
 
-#include "SFML/Window/Keyboard.hpp"
+#include <iostream>
 
 Game::Game()
     : m_window("Snake", sf::Vector2u(800, 600)),
@@ -12,10 +12,16 @@ Game::Game()
   m_textbox.Add("Seeded random number generator with: " +
                 std::to_string(time(NULL)));
   m_mushroomScaleFactor = 0.1;
-  m_mushroomTexture.loadFromFile("../../assets/imgs/mushroom.png");
+  m_mushroomTexture.loadFromFile("./assets/imgs/mushroom.png");
   m_mushroom.setTexture(m_mushroomTexture);
   m_mushroom.setScale(m_mushroomScaleFactor, m_mushroomScaleFactor);
+
+  m_texture.loadFromFile("./assets/imgs/mushroom.png");
+  m_sprite.setTexture(m_texture);
+  m_sprite.setScale(m_mushroomScaleFactor, m_mushroomScaleFactor);
+
   m_increment = sf::Vector2i(400, 400);  // 400px a second
+  m_window.GetEventManager()->AddCallback("Move", &Game::MoveSprite, this);
 }
 
 Game::~Game() {
@@ -48,7 +54,16 @@ void Game::Update(float f_delta) {
       m_snake.Reset();
     }
   }
-  // MoveMushroom(f_delta);
+
+  MoveMushroom(f_delta);
+}
+
+void Game::MoveSprite(EventDetails* l_details) {
+  sf::Vector2i mousepos =
+      m_window.GetEventManager()->GetMousePos(m_window.GetRenderWindow());
+  m_sprite.setPosition(mousepos.x, mousepos.y);
+  std::cout << "Moving sprite to: " << mousepos.x << ":" << mousepos.y
+            << std::endl;
 }
 
 void Game::MoveMushroom(float f_delta) {
@@ -78,10 +93,11 @@ void Game::MoveMushroom(float f_delta) {
 void Game::Render() {
   m_window.BeginDraw();  // Clear
 
-  // m_window.Draw(m_mushroom);
-  m_world.Render(*m_window.GetRenderWindow());
-  m_snake.Render(*m_window.GetRenderWindow());
-  m_textbox.Render(*m_window.GetRenderWindow());
+  m_window.Draw(m_sprite);
+  m_window.Draw(m_mushroom);
+  // m_world.Render(*m_window.GetRenderWindow());
+  // m_snake.Render(*m_window.GetRenderWindow());
+  // m_textbox.Render(*m_window.GetRenderWindow());
 
   m_window.EndDraw();  // Display
 }
