@@ -7,10 +7,13 @@ add_executable(${PROJECT_NAME} main.cpp)
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX
                                                  ${CMAKE_DEBUG_POSTFIX})
 
+target_include_directories(${PROJECT_NAME}
+                           PRIVATE "${CMAKE_SOURCE_DIR}/libs/sfml/include")
+
 # link libraries
 target_link_libraries(
   ${PROJECT_NAME}
-  PRIVATE libs project_flags
+  PRIVATE sfml project_flags
   PUBLIC Graphics Game Inputs)
 
 # add the install targets

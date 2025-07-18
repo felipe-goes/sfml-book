@@ -1,4 +1,5 @@
-add_library(Graphics Window.cpp Textbox.cpp)
+add_library(Graphics STATIC Window.cpp Textbox.cpp)
+set_target_properties(Graphics PROPERTIES DEBUG_POSTFIX d)
 
 # add libraries include directories
 target_include_directories(
@@ -11,7 +12,10 @@ target_include_directories(
                      $<INSTALL_INTERFACE:include>)
 
 # link Graphics to project_flags
-target_link_libraries(Graphics PUBLIC project_flags)
+target_link_libraries(
+  Graphics
+  PUBLIC project_flags
+  PRIVATE Inputs)
 
 # install libs
 set(installable_libs Graphics project_flags)

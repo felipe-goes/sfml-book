@@ -1,13 +1,13 @@
 #pragma once
 
+#include <functional>
 #include <string>
 #include <unordered_map>
 
 #include "./Binding.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
 
-using Callbacks =
-    std::unordered_map<std::string, std::function<void()>>;
+using Callbacks = std::unordered_map<std::string, std::function<void()> >;
 
 class EventManager {
  public:

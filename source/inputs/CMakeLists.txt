@@ -1,4 +1,5 @@
-add_library(Inputs EventManager.cpp)
+add_library(Inputs STATIC EventManager.cpp)
+set_target_properties(Inputs PROPERTIES DEBUG_POSTFIX d)
 
 # add libraries include directories
 target_include_directories(
@@ -11,7 +12,10 @@ target_include_directories(
                    $<INSTALL_INTERFACE:include>)
 
 # link Inputs to project_flags
-target_link_libraries(Inputs PUBLIC project_flags)
+target_link_libraries(
+  Inputs
+  PUBLIC project_flags
+  PRIVATE sfml)
 
 # install libs
 set(installable_libs Inputs project_flags)

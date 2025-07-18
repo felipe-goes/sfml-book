@@ -1,12 +1,13 @@
 add_subdirectory(sfml)
 
-# SDL
-set(LIBS)
-list(APPEND LIBS sfml-system)
-list(APPEND LIBS sfml-window)
-list(APPEND LIBS sfml-audio)
-list(APPEND LIBS sfml-graphics)
-# list(APPEND LIBS sfml-network)
+# SFML
+set(SFML)
+list(APPEND SFML sfml-system)
+list(APPEND SFML sfml-window)
+list(APPEND SFML sfml-audio)
+list(APPEND SFML sfml-graphics)
+# list(APPEND SFML sfml-network)
 
-add_library(libs INTERFACE)
-target_link_libraries(libs INTERFACE ${LIBS})
+add_library(sfml INTERFACE)
+
+target_link_libraries(sfml INTERFACE ${SFML})
